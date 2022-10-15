@@ -3,29 +3,31 @@ const fs = require("fs");
 
 class JsonConverter {
   constructor(path) {
-    this.filePath = path;
+    // this.filePath = path;
+    this.jsonData = {};
   }
 
   generateJSONFile(data) {
     fs.writeFileSync("data.json", JSON.stringify(data));
+    console.log("json file generated 👍️");
   }
 
-  convertXlsx() {
-    const file = XLSX.readFile(this.filePath);
+  convertXlsx(path) {
+    const file = XLSX.readFile(path);
     const sheetNames = file.SheetNames;
-
-    let parsedData = {};
 
     sheetNames.forEach((sheet, i) => {
       const tempData = XLSX.utils.sheet_to_json(file.Sheets[sheetNames[i]]);
       tempData.shift();
-      parsedData[sheet] = tempData;
+      this.jsonData[sheet] = tempData;
     });
 
-    this.generateJSONFile(parsedData);
-    console.log("json file generated 👍️");
+    console.log("json data created 👍️");
+    this.generateJSONFile(this.jsonData);
+    return this.jsonData;
   }
 }
 
-const converter = new JsonConverter("./data.xlsx");
-const jsonData = converter.convertXlsx();
+const converter = new JsonConverter();
+converter.convertXlsx("./data.xlsx");
+

@@ -55,4 +55,5 @@ class JsonConverter {
 }
 
 const converter = new JsonConverter();
-converter.convertXlsx("./data.csv");
+const jsonData = converter.convertXlsx("./data.csv");
+console.log(jsonData);

@@ -26,33 +26,7 @@ class JsonConverter {
     this.generateJSONFile(this.jsonData);
     return this.jsonData;
   }
-
-  //csv
-  convertCsv(path) {
-    const csvData = fs.readFileSync(path);
-
-    let data = csvData.toString().split(/\r?\n/);
-
-    const keys = data[0].split(",");
-
-    data.shift();
-
-    this.jsonData = [];
-
-    data.forEach((el) => {
-      let d = el.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-      let x = {};
-      d.forEach((value, i) => {
-        x[keys[i]] = value;
-      });
-      this.jsonData.push(x);
-    });
-
-    console.log("json data created 👍️");
-    this.generateJSONFile(this.jsonData);
-    return this.jsonData;
-  }
 }
 
 const converter = new JsonConverter();
-converter.convertCsv("./data.csv");
+converter.convertXlsx("./data.xl");

@@ -1,0 +1,25 @@
+# Python program to convert
+# JSON file to CSV
+ 
+import json
+import csv
+
+with open('data.json') as json_file:
+    data = json.load(json_file)
+ 
+csv_data = data['example']
+ 
+data_file = open('data_file.csv', 'w')
+ 
+csv_writer = csv.writer(data_file)
+ 
+is_headings = True
+ 
+for each_line in csv_data:
+    if is_headings:
+        header = each_line.keys()
+        csv_writer.writerow(header)
+        is_headings = False
+    csv_writer.writerow(each_line.values())
+ 
+data_file.close()

@@ -1,11 +1,11 @@
 //Function to convert ascii string to Hex
 
-let asciiToHexadecimal = (hexString) =>
+let asciiToHexadecimal = (asciiString) =>
   {
 	let arr1 = [];
-	for (let i = 0, l = hexString.length; i < l; i ++) 
+	for (let i = 0, l = asciiString.length; i < l; i ++) 
      {
-		let hex = Number(hexString.charCodeAt(i)).toString(16);
+		let hex = Number(asciiString.charCodeAt(i)).toString(16);
 		arr1.push(hex);
 	 }
 	return arr1.join('');

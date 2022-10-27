@@ -15,4 +15,5 @@ let asciiToHexadecimal = (asciiString) =>
 //Example:
 // console.log(asciiToHexadecimal('10000'));
 
+
 module.exports = asciiToHexadecimal;
